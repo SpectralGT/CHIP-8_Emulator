@@ -12,7 +12,7 @@ endif()
 project ("CHIP-8_Emulator")
 
 # Add source to this project's executable.
-add_executable (CHIP-8_Emulator "CHIP-8_Emulator.cpp" "CHIP-8_Emulator.h")
+add_executable (CHIP-8_Emulator "CHIP-8_Emulator.cpp" "CHIP-8_Emulator.h" "Chip8.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET CHIP-8_Emulator PROPERTY CXX_STANDARD 20)
