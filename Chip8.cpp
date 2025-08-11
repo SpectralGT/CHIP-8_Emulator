@@ -68,6 +68,11 @@ void Chip8::LoadROM(char const* filename)
 	}
 }
 
+void Chip8::OP_00E0()
+{
+	memset(video, 0, sizeof(video));
+}
+
 class Chip8
 {
 	Chip8()
