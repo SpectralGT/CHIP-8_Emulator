@@ -73,6 +73,20 @@ void Chip8::OP_00E0()
 	memset(video, 0, sizeof(video));
 }
 
+void Chip8::OP_00EE()
+{
+	--sp;
+	pc = stack[sp];
+}
+
+
+void Chip8::OP_1nnn()
+{
+	uint16_t address = opcode & 0x0FFFu;
+
+	pc = address;
+}
+
 class Chip8
 {
 	Chip8()
