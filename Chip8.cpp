@@ -119,6 +119,14 @@ void Chip8::OP_4xkk()
 	}
 }
 
+void Chip8::OP_6xkk()
+{
+	uint8_t Vx = (opcode & 0x0F00u) >> 8u;
+	uint8_t byte = opcode & 0x00FFu;
+
+	registers[Vx] = byte;
+}
+
 void Chip8::OP_5xy0()
 {
 	uint8_t Vx = (opcode & 0x0F00u) >> 8u;
