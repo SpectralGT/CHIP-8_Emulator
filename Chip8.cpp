@@ -214,6 +214,16 @@ void Chip8::OP_8xy5()
 	registers[Vx] -= registers[Vy];
 }
 
+void Chip8::OP_8xy6()
+{
+	uint8_t Vx = (opcode & 0x0F00u) >> 8u;
+
+	// Save LSB in VF
+	registers[0xF] = (registers[Vx] & 0x1u);
+
+	registers[Vx] >>= 1;
+}
+
 class Chip8
 {
 	Chip8()
