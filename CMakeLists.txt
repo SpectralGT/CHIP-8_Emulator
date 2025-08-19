@@ -1,21 +1,19 @@
-﻿# CMakeList.txt : CMake project for CHIP-8_Emulator, include source and define
-# project specific logic here.
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required(VERSION 3.14)
+project(chip8)
 
-# Enable Hot Reload for MSVC compilers if supported.
-if (POLICY CMP0141)
-  cmake_policy(SET CMP0141 NEW)
-  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
-endif()
+set(CMAKE_CXX_STANDARD 11)
 
-project ("CHIP-8_Emulator")
+add_subdirectory(3rdParty/glad EXCLUDE_FROM_ALL)
+add_subdirectory(3rdParty/sdl-2.0.20 EXCLUDE_FROM_ALL)
+add_subdirectory(3rdParty/imgui-1.88 EXCLUDE_FROM_ALL)
 
-# Add source to this project's executable.
-add_executable (CHIP-8_Emulator "CHIP-8_Emulator.cpp" "CHIP-8_Emulator.h" "Chip8.cpp")
+add_executable(
+	chip8
+	Source/Chip8.cpp
+	Source/Main.cpp
+	Source/Platform.cpp)
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET CHIP-8_Emulator PROPERTY CXX_STANDARD 20)
-endif()
+target_compile_options(chip8 PRIVATE -Wall)
 
-# TODO: Add tests and install targets if needed.
+target_link_libraries(chip8 PRIVATE glad SDL2 imgui)
+
